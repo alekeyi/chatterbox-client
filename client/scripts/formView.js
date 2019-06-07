@@ -11,14 +11,14 @@ var FormView = {
     // Stop the browser from submitting the form
     event.preventDefault();
     // var formData =new FormData(docjument.querySelector('form'));
-    let newMessage = {'username': App.username, 'roomname': '', 'text': document.getElementById("message").value};
+    let newMessage = {'username': App.username, 'roomname': App.room || '', 'text': document.getElementById("message").value};
     Parse.create(newMessage, console.log("it worked."));
     FormView.handleRefresh();
   },
   
   handleRefresh: function(){
     console.log("Refreshing...");
-    App.fetch();
+    App.refresh();
   },
 
   setStatus: function(active) {
