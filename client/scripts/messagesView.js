@@ -1,30 +1,42 @@
 var MessagesView = {
   messages: {},
   $chats: $('#chats'),
-  $userNames: $('.username'),
+  $userNames: "",
 
   initialize: function() {
     //iterate over messages
-    $userNames.on('click', Friends.handleBefriend);
     MessagesView.$chats.empty();
-    console.log("Appending new messages");
     for(let message of this.messages){
-      console.log(message)
       if(App.room === 'Main'){
-        let newMessage = MessageView.render({username: message.username, text: message.text});
-        this.$chats.append(newMessage);
+        MessagesView.renderMessage(message);
       }else if(message.roomname === App.room){
-        let newMessage = MessageView.render({username: message.username, text: message.text});
-        this.$chats.append(newMessage);
+        MessagesView.renderMessage(message);
       }
+      //@todo: move this
       if(!App.rooms.includes(message.roomname)){
         App.rooms.push(message.roomname);
         App.rooms.sort();
       }
     }
+    MessagesView.$userNames = $('.username');
+    MessagesView.$userNames.on('click', (event)=>{Friends.handleBefriend(event)});
+
   },
 
-  render: function() {
+  renderMessage: function(messageObject) {
+    let messageHTML;
+    if(Friends.myFriends.includes(messageObject.username)){
+      
+      messageHTML = MessageView.renderFriend(
+        {username: messageObject.username, 
+          text: messageObject.text});
+    } else {
+      messageHTML = MessageView.render(
+        {username: messageObject.username, 
+          text: messageObject.text});
+    }
+    
+    $('#chats').append(messageHTML);
   }
 
 };

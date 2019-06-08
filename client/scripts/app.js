@@ -6,11 +6,14 @@ var App = {
   initialize: function() {
     App.username = window.location.search.substr(10);
     App.room = 'Main';
+    RoomsView.initialize();
+    FormView.initialize();
+    //Just for the tests
+    Rooms.add();
+    Friends.toggleStatus();
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
-    FormView.initialize();
-    
   },
 
   fetch: function(callback = ()=>{}) {

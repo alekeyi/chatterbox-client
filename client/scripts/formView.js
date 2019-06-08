@@ -12,7 +12,7 @@ var FormView = {
     event.preventDefault();
     // var formData =new FormData(docjument.querySelector('form'));
     let newMessage = {'username': App.username, 'roomname': App.room || '', 'text': document.getElementById("message").value};
-    Parse.create(newMessage, console.log("it worked."));
+    Parse.create(newMessage, console.log("New message created."));
     FormView.handleRefresh();
   },
   

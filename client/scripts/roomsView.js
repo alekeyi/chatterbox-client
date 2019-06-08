@@ -10,31 +10,31 @@ var RoomsView = {
   },
 
   handleAddRoom: function(event) {
+    console.log("Room added button")
     App.room = document.getElementById("roomName").value;
     App.rooms.push(App.room);
     RoomsView.populateRoomSelector();
-    console.log('App.room', App.room);
+    RoomsView.$select.val(App.room);
+    MessagesView.initialize();
+    Rooms.add();
   },
 
   populateRoomSelector: function(){
-    console.log('App.rooms', App.rooms);
-    // console.log('RoomsView.$select', RoomsView.$select);
     RoomsView.$select.empty();
-    RoomsView.$select.append($(`<option value='Main'>Main Room</option>`));
+    // RoomsView.$select.append($(`<option value='Main'>Main Room</option>`));
     for(let room of App.rooms){
       RoomsView.$select.append($("<option></option>").attr("value", room).text(room));
-      console.log('room', room);
     }
   },
 
   handleRoomSelect: function(event){
     App.room = event.target.value;
     MessagesView.initialize();
-    // RoomsView.populateRoomSelector();
   },
 
-  render: function() {
-    
+  renderRoom: function(roomName) {
+    App.rooms.push(roomName);
+    RoomsView.$select.append($("<option></option>").attr("value", roomName).text(roomName));
   }
 
   
