@@ -1,9 +1,9 @@
 var Friends = {
-    myFriends: [],
+  myFriends: [],
   handleBefriend: function(event){      
       Friends.myFriends.push(event.target.innerText);
-      MessagesView.initialize();
-      Friends.toggleStatus;
+      MessagesView.populateMessages();
+      Friends.toggleStatus();
   },
   toggleStatus: function(){
 

@@ -32,7 +32,7 @@ var Parse = {
   readRoom: function(successCB, errorCB = null) {
     // console.log(JSON.stringify({'roomname': App.room}));
     $.ajax({
-      url: Parse.server+`?roomname=${App.room}`,
+      url: Parse.server+`?where=${JSON.stringify({'roomname': App.room})}`,
       type: 'GET',
       // data: { order: '-createdAt' },
       contentType: 'application/json',

@@ -3,10 +3,11 @@ var App = {
   $spinner: $('.spinner img'),
   rooms: [],
   username: 'anonymous',
+  defaultRoom: 'Main',
+  
   initialize: function() {
     App.username = window.location.search.substr(10);
     App.room = 'Main';
-    RoomsView.initialize();
     FormView.initialize();
     //Just for the tests
     Rooms.add();
@@ -30,7 +31,7 @@ var App = {
     Parse.readAll((data) => {
       console.log("Fetching");
       MessagesView.messages = data.results;
-      MessagesView.initialize();
+      MessagesView.populateMessages();
       callback();
     });
   },

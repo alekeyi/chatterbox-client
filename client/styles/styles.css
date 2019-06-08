@@ -60,6 +60,11 @@ form input[type=text] {
     padding: 5px;
 }
 
+.chats {
+    padding: 2%;
+    background: #eee;
+}
+
 .chat {
     overflow: hidden;
     padding: 5px;
@@ -69,6 +74,7 @@ form input[type=text] {
 
 .chat .username {
     font-weight: 800;
+    cursor: pointer;
 }
 
 .chat .username:hover {
@@ -103,4 +109,29 @@ select, option {
     overflow: hidden;
 }
 
+.tabs {
+    padding:0;
+    background: #eee;
+    display: flex;
+}
 
+.tab {
+    padding: 2%;
+    background: white;
+    width: 25%;
+    /*width: 3rem;*/
+    border: 1px solid grey;
+    height: 2rem;
+    overflow: hidden;
+}
+
+.tab:hover {
+    box-shadow: 1px 3px 3px 0 rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.tab.selected {
+    background-color: #eee;
+    border: none;
+    box-shadow:  1px -2px 3px 0 rgba(0, 0, 0, 0.15);
+}

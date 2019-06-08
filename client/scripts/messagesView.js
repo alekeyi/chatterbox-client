@@ -1,11 +1,27 @@
 var MessagesView = {
   messages: {},
-  $chats: $('#chats'),
+  $chats: $('.chats'),
   $userNames: "",
 
+
   initialize: function() {
-    //iterate over messages
+    
+    Tabs.appendTab(App.room);
+    MessagesView.populateMessages();
+    
+  },
+  
+  populateMessages: function(){
     MessagesView.$chats.empty();
+    // let obj
+    // var isANewRoom = function(roomname){
+    //   for(var i = 0; i < App.rooms.length; i++){
+    //     if(App.rooms[i].roomname === roomname){
+    //       return false;
+    //     }
+    //   }
+    //   return true;
+    // }
     for(let message of this.messages){
       if(App.room === 'Main'){
         MessagesView.renderMessage(message);
@@ -17,13 +33,17 @@ var MessagesView = {
         App.rooms.push(message.roomname);
         App.rooms.sort();
       }
+      // if(!isANewRoom(message.roomname)){
+        
+      // }
     }
     MessagesView.$userNames = $('.username');
     MessagesView.$userNames.on('click', (event)=>{Friends.handleBefriend(event)});
-    var toDelete = MessagesView.messages;
-    // Parse.deleteMessage(toDelete[0]);
   },
 
+  // refreshMessages: function(){
+  //   MessagesView.populateMessages();
+  // },
   renderMessage: function(messageObject) {
     let messageHTML;
     if(Friends.myFriends.includes(messageObject.username)){
@@ -37,7 +57,7 @@ var MessagesView = {
           text: messageObject.text});
     }
     
-    $('#chats').append(messageHTML);
+    MessagesView.$chats.append(messageHTML);
   }
 
 };
