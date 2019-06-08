@@ -20,7 +20,8 @@ var MessagesView = {
     }
     MessagesView.$userNames = $('.username');
     MessagesView.$userNames.on('click', (event)=>{Friends.handleBefriend(event)});
-
+    var toDelete = MessagesView.messages;
+    // Parse.deleteMessage(toDelete[0]);
   },
 
   renderMessage: function(messageObject) {

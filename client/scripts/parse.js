@@ -27,5 +27,35 @@ var Parse = {
         console.error('chatterbox: Failed to fetch messages', error);
       }
     });
+  },
+
+  readRoom: function(successCB, errorCB = null) {
+    // console.log(JSON.stringify({'roomname': App.room}));
+    $.ajax({
+      url: Parse.server+`?roomname=${App.room}`,
+      type: 'GET',
+      // data: { order: '-createdAt' },
+      contentType: 'application/json',
+      success: successCB,
+      error: errorCB || function(error) {
+        console.error('chatterbox: Failed to fetch room', error);
+      },
+      // where: /*JSON.stringify(*/{'roomname': App.room}/*)*/
+    });
+  },
+
+  deleteMessage: function(objectID, successCB, errorCB = null) {
+    console.log('Bye');
+    $.ajax({
+      url: Parse.server+objectID,
+      origin: '*',
+      type: 'DELETE',
+      data: { order: '-createdAt' },
+      contentType: 'application/json',
+      success: successCB,
+      error: errorCB || function(error) {
+        console.error('chatterbox: Failed to delete messages', error);
+      },
+    });
   }
 };

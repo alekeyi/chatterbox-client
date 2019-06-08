@@ -7,6 +7,7 @@ var RoomsView = {
     RoomsView.populateRoomSelector();
     RoomsView.$roomButton.on('click', RoomsView.handleAddRoom);
     RoomsView.$select.on('change', RoomsView.handleRoomSelect);
+    $('#add_room_tab').on('click', RoomsView.handleAddRoomTab);
   },
 
   handleAddRoom: function(event) {
@@ -17,6 +18,10 @@ var RoomsView = {
     RoomsView.$select.val(App.room);
     MessagesView.initialize();
     Rooms.add();
+  },
+ 
+  handleAddRoomTab: function(event){
+    console.log('adding room tab')
   },
 
   populateRoomSelector: function(){
@@ -29,6 +34,7 @@ var RoomsView = {
 
   handleRoomSelect: function(event){
     App.room = event.target.value;
+    Parse.readRoom((data)=>{console.log(data)});
     MessagesView.initialize();
   },
 
